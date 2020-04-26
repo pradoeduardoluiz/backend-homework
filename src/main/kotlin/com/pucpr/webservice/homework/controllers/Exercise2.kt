@@ -67,4 +67,15 @@ class Exercise2() {
         val response = ResponseDTO(data = numbersSequenceResponse)
         return ResponseEntity.ok(response)
     }
+
+    @PostMapping("api/exercise2/mimic", produces = ["application/json"])
+    fun post(@RequestBody mimicDTO: Exercise2MimicDTO): ResponseEntity<ResponseDTO<Exercise2MimicResponseDTO>> {
+
+        val mimicText = mimicDTO.text.replace(RegexConstants.VOWELS, "i")
+        val mimicResponse = Exercise2MimicResponseDTO(
+                text = mimicText
+        )
+        val response = ResponseDTO(data = mimicResponse)
+        return ResponseEntity.ok(response)
+    }
 }
